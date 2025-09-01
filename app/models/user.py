@@ -16,7 +16,10 @@ class User(base):
     created_at = Column(DateTime, default=func.now(), nullable=False)
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
 
-    transactions = relationship("Transaction", back_populates="user")
+    transactions = relationship("Transaction",
+        back_populates="user",
+        foreign_keys="[Transaction.user_id]"
+    )
 
 
     def __repr__(self):
