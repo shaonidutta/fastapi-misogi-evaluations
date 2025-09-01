@@ -1,0 +1,7 @@
+pydantic
+fastapi
+uvicorn
+pydantic-settings
+sqlalchemy
+asyncmy
+python-dotenv
