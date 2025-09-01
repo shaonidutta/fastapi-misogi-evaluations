@@ -1,5 +1,5 @@
 # to create a user model using sqlalchemy
-from sqlalchemy import Column, Integer, String, Float, Boolean
+from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.base import base
@@ -13,11 +13,11 @@ class User(base):
     password = Column(String(255), nullable=False)
     phone_number = Column(String(15), nullable=True)
     balance = Column(Float, default=0.0, nullable=False)
-    created_at = Column(Integer, default=func.now(), nullable=False)
-    updated_at = Column(Integer, default=func.now(), onupdate=func.now(), nullable=False)
+    created_at = Column(DateTime, default=func.now(), nullable=False)
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
 
     transactions = relationship("Transaction", back_populates="user")
-    
+
 
     def __repr__(self):
         return f"<User(id={self.id}, username={self.username}, email={self.email})>"

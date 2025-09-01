@@ -1,5 +1,5 @@
 # to create a transaction model using sqlalchemy
-from sqlalchemy import Column, ForeignKey, Integer, String, Float, Boolean
+from sqlalchemy import Column, ForeignKey, Integer, String, Float, Boolean,DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db.base import base
@@ -14,8 +14,8 @@ class Transaction(base):
     description = Column(String(255), nullable=True)
     reference_transaction_id = Column(Integer, ForeignKey("transactions.id"), nullable=True)
     recipient_user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
-    created_at = Column(Integer, default=func.now(), nullable=False)
-    updated_at = Column(Integer, default=func.now(), onupdate=func.now(), nullable=False)
+    created_at = Column(DateTime, default=func.now(), nullable=False)
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now(), nullable=False)
 
     user = relationship("User", back_populates="transactions")
 
