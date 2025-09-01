@@ -20,7 +20,3 @@ async def modify_user(user_id: int, user_data: UserUpdate, db=Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
-@router.post("/", response_model=UserRead, status_code=200)
-async def create_user(user_data: UserCreate, db=Depends(get_db)):
-    user = await create_user(db, user_data)
-    return user
